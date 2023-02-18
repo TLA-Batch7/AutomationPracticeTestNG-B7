@@ -55,5 +55,15 @@ public class UserMgtPage extends BasePage{
     @FindBy(id="submit-table-btn")
     public WebElement submitTableBtn;
 
+    public void newUserForm(String fName, String lName, String phone, String emailInput, String roleInput){
+       firstName.sendKeys(fName);
+       lastName.sendKeys(lName);
+       phoneNumber.sendKeys(phone);
+       email.sendKeys(emailInput);
+       role.sendKeys(roleInput);
+
+       userMgtSubmitBtn.click();
+    }
+
 
 }

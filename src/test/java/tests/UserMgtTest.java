@@ -36,7 +36,7 @@ public class UserMgtTest extends BaseTest{
         String phone = faker.phoneNumber().cellPhone();
         String email = faker.internet().emailAddress();
 
-        //version 1
+        //version 1 - first way we learned
 //        driver.findElement(By.id("Firstname")).sendKeys(firstName);
 //        driver.findElement(By.id("Lastname")).sendKeys(lastName);
 //        driver.findElement(By.id("Phonenumber")).sendKeys(phone);
@@ -45,13 +45,16 @@ public class UserMgtTest extends BaseTest{
 //
 //        driver.findElement(By.id("submit-btn")).click();
 
-        //version 2 using object of the page we created
-        page.firstName.sendKeys(firstName);
-        page.lastName.sendKeys(lastName);
-        page.phoneNumber.sendKeys(phone);
-        page.email.sendKeys(email);
-        page.role.sendKeys(role);
-        page.userMgtSubmitBtn.click();
+        //version 2 - using object of the page we created
+//        page.firstName.sendKeys(firstName);
+//        page.lastName.sendKeys(lastName);
+//        page.phoneNumber.sendKeys(phone);
+//        page.email.sendKeys(email);
+//        page.role.sendKeys(role);
+//        page.userMgtSubmitBtn.click();
+
+        //version 3 - we created a reusable method in page class
+        page.newUserForm(firstName,lastName,phone,email,role);
 
         Assert.assertEquals(page.tempFirstName.getText(),firstName);
         Assert.assertEquals(page.tempLastName.getText(), lastName);
@@ -69,12 +72,7 @@ public class UserMgtTest extends BaseTest{
         String phone = faker.phoneNumber().cellPhone();
         String email = faker.internet().emailAddress();
 
-        page.firstName.sendKeys(firstName);
-        page.lastName.sendKeys(lastName);
-        page.phoneNumber.sendKeys(phone);
-        page.email.sendKeys(email);
-        page.role.sendKeys(role);
-        page.userMgtSubmitBtn.click();
+        page.newUserForm(firstName,lastName,phone,email,role);
 
         //accessing DB page
         page.accessDbBtn.click();
@@ -92,8 +90,8 @@ public class UserMgtTest extends BaseTest{
         Assert.assertEquals(elementList.size(),0);
     }
 
-    @Test(testName = "US1011: Clear staging table option")
-    public void test1011(){
+    @Test(testName = "US1011: Clear staging table option", dataProvider = "role")
+    public void test1011(String role){
         //Using Faker to populate fake data
         Faker faker = new Faker();
         String firstName = faker.name().firstName();
@@ -101,12 +99,7 @@ public class UserMgtTest extends BaseTest{
         String phone = faker.phoneNumber().cellPhone();
         String email = faker.internet().emailAddress();
 
-        page.firstName.sendKeys(firstName);
-        page.lastName.sendKeys(lastName);
-        page.phoneNumber.sendKeys(phone);
-        page.email.sendKeys(email);
-        page.role.sendKeys("Student");
-        page.userMgtSubmitBtn.click();
+        page.newUserForm(firstName,lastName,phone,email,role);
 
         page.clearBtn.click();
 
@@ -114,8 +107,8 @@ public class UserMgtTest extends BaseTest{
         Assert.assertEquals(dataCount.size(), 0);
     }
 
-    @Test(testName = "US1012: Adding a new user to DB")
-    public void test1012(){
+    @Test(testName = "US1012: Adding a new user to DB",dataProvider = "role")
+    public void test1012(String role){
         //Using Faker to populate fake data
         Faker faker = new Faker();
         String firstName = faker.name().firstName();
@@ -123,12 +116,7 @@ public class UserMgtTest extends BaseTest{
         String phone = faker.phoneNumber().cellPhone();
         String email = faker.internet().emailAddress();
 
-        page.firstName.sendKeys(firstName);
-        page.lastName.sendKeys(lastName);
-        page.phoneNumber.sendKeys(phone);
-        page.email.sendKeys(email);
-        page.role.sendKeys("Student");
-        page.userMgtSubmitBtn.click();
+        page.newUserForm(firstName,lastName,phone,email,role);
 
         page.submitTableBtn.click();
 
