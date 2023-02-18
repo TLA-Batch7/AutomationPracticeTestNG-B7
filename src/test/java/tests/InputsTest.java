@@ -4,11 +4,16 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.CalendarPage;
+import pages.InputsPage;
 
 
 public class InputsTest extends BaseTest{
+
+    InputsPage page;
     @BeforeMethod
     public void setUp(){
+        page = new InputsPage(driver);
         driver.get("http://automation.techleadacademy.io/#/inputs");
     }
 
@@ -16,10 +21,10 @@ public class InputsTest extends BaseTest{
     public void test401(){
         String testData = "hello world";
 
-        driver.findElement(By.id("message")).sendKeys(testData);
-        driver.findElement(By.name("button1")).click();
+        page.messageField.sendKeys(testData);
+        page.showMessageBtn.click();
 
-        String actual = driver.findElement(By.name("message1")).getText();
+        String actual = page.messageResult.getText();
         Assert.assertEquals(actual, testData);
     }
 }
