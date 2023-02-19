@@ -20,6 +20,7 @@ public class OthersTest extends BaseTest{
     public void test01(){
         String disableText = "DISABLED BUTTON";
         Assert.assertEquals(page.statusBtn.getText(),disableText);
+        Assert.assertFalse(page.statusBtn.isEnabled());
     }
 
     @Test(testName = "US2002 - Enabled option from toggle button", description = "I need a Toggle button that will enable disabled button on Others page")
@@ -28,6 +29,7 @@ public class OthersTest extends BaseTest{
         page.toggleBtn.click();
 
         Assert.assertEquals(page.statusBtn.getText(),enableText);
+        Assert.assertTrue(page.statusBtn.isEnabled());
     }
 
 
