@@ -25,7 +25,7 @@ public class UserMgtTest extends BaseTest{
     @BeforeMethod
     public void setUp(){
         page = new UserMgtPage(driver);
-        driver.get("http://automation.techleadacademy.io/#/usermgt");
+        driver.findElement(By.xpath("//a[@class='navbar-brand ml-3' and text()='User-Mgt']")).click();
     }
 
     @Test(testName="US1010: Staging table view", description= "Verify temp table is getting populated",
