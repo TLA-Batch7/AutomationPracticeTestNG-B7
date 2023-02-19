@@ -34,8 +34,6 @@ public class UserDBPage extends BasePage {
     @FindBy(id="access-db-btn")
     public WebElement accessDbBtn;
 
-    @FindBy(xpath="//td[6]")
-    public List<WebElement> password;
 
     public void newUserForm2(String fName, String lName, String phone, String emailInput, String roleInput){
         firstName.sendKeys(fName);

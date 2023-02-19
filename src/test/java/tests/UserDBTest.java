@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.UserDBPage;
+import utils.BrowserUtils;
 
 import java.util.List;
 
@@ -41,11 +42,7 @@ public class UserDBTest extends BaseTest{
         //access DB page
         page.accessDbBtn.click();
 
-        //switch to window
-        for(String each: driver.getWindowHandles()){
-            if(!each.equalsIgnoreCase(driver.getWindowHandle()))
-                driver.switchTo().window(each);
-        }
+        BrowserUtils.switchToNewWindow(driver);
 
         List<WebElement> passwords = driver.findElements(By.xpath("//td[6]"));
         int lastIndex = passwords.size()-1;
