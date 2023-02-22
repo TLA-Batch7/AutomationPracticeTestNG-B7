@@ -56,7 +56,7 @@ public class UserMgtTest extends BaseTest{
 //        page.userMgtSubmitBtn.click();
 
         //version 3 - we created a reusable method in page class
-        page.newUserForm(firstName,lastName,phone,email,role);
+        page.fillNewUserForm(firstName,lastName,phone,email,role);
 
         Assert.assertEquals(page.tempFirstName.getText(),firstName);
         Assert.assertEquals(page.tempLastName.getText(), lastName);
@@ -80,7 +80,7 @@ public class UserMgtTest extends BaseTest{
 
         //adding user to the table
 //        page.newUserForm(firstName,lastName,phone,email,role);
-        page.newUserForm(user.getFirstName(),user.getLastName(),user.getPhone(),user.getEmail(),user.getRole());
+        page.fillNewUserForm(user.getFirstName(),user.getLastName(),user.getPhone(),user.getEmail(),user.getRole());
 
 
         //accessing DB page
@@ -113,7 +113,7 @@ public class UserMgtTest extends BaseTest{
                 faker.phoneNumber().cellPhone(),faker.internet().emailAddress(),role);
 
         //adding user to the table
-        page.newUserForm(user.getFirstName(),user.getLastName(),user.getPhone(),user.getEmail(),user.getRole());
+        page.fillNewUserForm(user.getFirstName(),user.getLastName(),user.getPhone(),user.getEmail(),user.getRole());
 
         page.clearBtn.click();
 
@@ -129,7 +129,7 @@ public class UserMgtTest extends BaseTest{
                 faker.phoneNumber().cellPhone(),faker.internet().emailAddress(),role);
 
         //adding user to the table
-        page.newUserForm(user.getFirstName(),user.getLastName(),user.getPhone(),user.getEmail(),user.getRole());
+        page.fillNewUserForm(user.getFirstName(),user.getLastName(),user.getPhone(),user.getEmail(),user.getRole());
 
 
         page.submitTableBtn.click();

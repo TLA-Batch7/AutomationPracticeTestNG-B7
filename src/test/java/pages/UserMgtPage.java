@@ -1,14 +1,21 @@
 package pages;
 
+import data.pojo.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.BrowserUtils;
 
 import java.util.List;
 
 public class UserMgtPage extends BasePage{
-    public UserMgtPage(WebDriver driver){PageFactory.initElements(driver,this);}
+    private WebDriver driver;
+
+    public UserMgtPage(WebDriver driver){
+        PageFactory.initElements(driver,this);
+        this.driver = driver;
+    }
 
     @FindBy(id="Firstname")
     public WebElement firstName;
@@ -55,15 +62,31 @@ public class UserMgtPage extends BasePage{
     @FindBy(id="submit-table-btn")
     public WebElement submitTableBtn;
 
-    public void newUserForm(String fName, String lName, String phone, String emailInput, String roleInput){
+    public void fillNewUserForm(String fName, String lName, String phone, String emailInput, String roleInput){
        firstName.sendKeys(fName);
        lastName.sendKeys(lName);
        phoneNumber.sendKeys(phone);
        email.sendKeys(emailInput);
        role.sendKeys(roleInput);
-
        userMgtSubmitBtn.click();
     }
 
+    public void addNewUserAndSwitchToUserDBPage(User user){
+        fillNewUserForm(
+                user.getFirstName(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getEmail(),
+                user.getRole()
+        );
+
+        //submitting new user
+        submitTableBtn.click();
+
+        //access DB page
+        accessDbBtn.click();
+
+        BrowserUtils.switchToNewWindow(driver);
+    }
 
 }
