@@ -121,7 +121,7 @@ public class UserMgtTest extends BaseTest{
         Assert.assertEquals(dataCount.size(), 0);
     }
 
-    @Test(testName = "US1012: Adding a new user to DB",dataProvider = "role")
+    @Test(testName = "US1012: Adding a new user to DB",dataProvider = "role", groups = "smoke")
     public void test1012(String role){
         //Using Faker to populate fake data
         Faker faker = new Faker();

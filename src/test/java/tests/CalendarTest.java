@@ -19,7 +19,7 @@ public class CalendarTest extends BaseTest{
         driver.get("http://automation.techleadacademy.io/#/calendar");
     }
 
-    @Test(testName = "US1015: Choosing date from calendar")
+    @Test (testName = "US1015: Choosing date from calendar", groups = "smoke")
     public void test1015(){
         page.endDateInputField.click();
         page.calendarTomorrowDate.click();

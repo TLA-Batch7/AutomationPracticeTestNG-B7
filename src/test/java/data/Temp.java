@@ -1,9 +1,8 @@
 package data;
 
-import data.pojo.Employee;
 import utils.ConfigReader;
 
-public class temp {
+public class Temp {
     public static void main(String[] args) {
 //        Employee employee1 = new Employee("John Doe",1, "IT");
 //
