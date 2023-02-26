@@ -13,6 +13,7 @@ public class UserMgtPage extends BasePage{
     private WebDriver driver;
 
     public UserMgtPage(WebDriver driver){
+        super(driver);
         PageFactory.initElements(driver,this);
         this.driver = driver;
     }

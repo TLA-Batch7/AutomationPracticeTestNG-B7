@@ -10,6 +10,7 @@ import java.util.List;
 public class UserDBPage extends BasePage {
     private WebDriver driver;
     public UserDBPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver,this);
         this.driver = driver;
     }

@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.BasePage;
 import pages.HomePage;
 
 public class HomeTest extends BaseTest{
@@ -22,11 +23,17 @@ public class HomeTest extends BaseTest{
 
     @Test(testName = "US101: Test Header")
     public void test101(){
-        Assert.assertEquals(page.title.getText(), "Automation with Selenium");
+        Assert.assertEquals(page.getText(page.title), "Automation with Selenium");
+    }
+
+    @Test(testName = "US102: Test first sentence")
+    public void test102(){
+        page.assertEquals(page.getText(page.firstSentence)
+                ,"selenium WebDriver is a collection of open-source APIs which are used to automate the testing of a web application.");
     }
 
     @Test(testName = "report demo")
-    public void test102(){
+    public void test103(){
         ExtentReports extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("report.html");
         spark.config().setTheme(Theme.STANDARD);

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class CalendarPage extends BasePage{
 
     public CalendarPage(WebDriver driver){
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 

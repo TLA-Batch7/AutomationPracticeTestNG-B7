@@ -38,7 +38,7 @@ public class ExtentManager {
     @BeforeMethod
     public ExtentTest createTestReport(WebDriver driver, Method method){
         this.driver = driver;
-        extentTest = extentReports.createTest(getCustomTestDescription(method));
+        extentTest = extentReports.createTest(getCustomTestName(method));
         logTestGroups(method);
         return extentTest;
     }
@@ -79,6 +79,7 @@ public class ExtentManager {
         extentTest.info(title, MediaEntityBuilder.createScreenCaptureFromBase64String(Screenshot.takeScreenshot(driver)).build());
     }
     public void logScreenshot() {
+        if (ConfigReader.readProperty("configuration.properties","takeScreenshots").equalsIgnoreCase("true"))
         extentTest.info(MediaEntityBuilder.createScreenCaptureFromBase64String(Screenshot.takeScreenshot(driver)).build());
     }
     public void logInfo(String info){
@@ -86,7 +87,7 @@ public class ExtentManager {
     }
     public void logLocatorInfo(String msg, WebElement element){
         String str = element.toString();
-        extentTest.info(msg + "->" + str.substring(str.indexOf("->") + 2, str.length() -1));
+        extentTest.info(msg +  "->" + str.substring(str.indexOf("->") + 2, str.length() -1));
     }
 
 }
